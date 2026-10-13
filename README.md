@@ -1,2 +1,23 @@
-# neon-cosmic-games
-Neon Cosmic Games Hub - Futuristic neon-styled website with quizzes, arcade games and more. Session high scores, privacy policy.
+# Neon Cosmic Games
+
+Футуристический неоновый сайт с мини-играми в космическом стиле.
+
+## Игры
+- Квиз: Страны
+- Космическая Память
+- Неоновый Змей
+- Тест Реакции
+- Математический Блиц
+- Цветовой Матч
+
+## Особенности
+- Неоновый космический дизайн
+- Рекорды сохраняются в localStorage (только в твоей сессии/браузере)
+- Страницы: Игры, Рекорды, О сайте, Конфиденциальность
+- Полностью клиентский (работает оффлайн после загрузки)
+
+## Запуск
+Открой `index.html` или используй GitHub Pages.
+
+## GitHub Pages
+Сайт доступен по адресу: https://kwzm2mbyy2-hue.github.io/neon-cosmic-games/

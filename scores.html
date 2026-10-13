@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Рекорды | Neon Cosmic Games</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <header class="header">
+    <div class="logo">
+      <span class="logo-icon">◈</span>
+      <span class="logo-text">NEON COSMIC</span>
+    </div>
+    <nav class="nav">
+      <a href="index.html" class="nav-link">Игры</a>
+      <a href="scores.html" class="nav-link active">Рекорды</a>
+      <a href="about.html" class="nav-link">О сайте</a>
+      <a href="privacy.html" class="nav-link">Конфиденциальность</a>
+    </nav>
+  </header>
+
+  <main class="main">
+    <div class="page-content">
+      <h1>Твои рекорды</h1>
+      <p>Результаты сохраняются только в этой сессии браузера (localStorage). Они видны только тебе.</p>
+      <table class="scores-table" id="scores-table">
+        <thead>
+          <tr>
+            <th>Игра</th>
+            <th>Лучший</th>
+            <th>Последний</th>
+            <th>Партий</th>
+          </tr>
+        </thead>
+        <tbody id="scores-body"></tbody>
+      </table>
+      <br>
+      <button class="btn btn-pink" id="clear-scores">Очистить все рекорды</button>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Neon Cosmic Games</p>
+  </footer>
+
+  <script src="games.js"></script>
+  <script>
+    const names = {
+      'country-quiz': 'Квиз: Страны',
+      'space-memory': 'Космическая Память',
+      'neon-snake': 'Неоновый Змей',
+      'reaction-test': 'Тест Реакции (мс)',
+      'math-blitz': 'Математический Блиц',
+      'color-match': 'Цветовой Матч'
+    };
+    function renderScores() {
+      const data = ScoreManager.getAll();
+      const tbody = document.getElementById('scores-body');
+      tbody.innerHTML = '';
+      const keys = Object.keys(data);
+      if (keys.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--text-dim)">Пока нет результатов. Сыграй в игры!</td></tr>';
+        return;
+      }
+      keys.forEach(k => {
+        const s = data[k];
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${names[k] || k}</td>
+          <td class="score-value">${s.best}</td>
+          <td>${s.last}</td>
+          <td>${s.plays}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+    renderScores();
+    document.getElementById('clear-scores').onclick = () => {
+      if (confirm('Очистить все рекорды?')) {
+        ScoreManager.clear();
+        renderScores();
+      }
+    };
+  </script>
+</body>
+</html>
